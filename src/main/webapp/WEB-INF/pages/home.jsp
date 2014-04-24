@@ -13,10 +13,10 @@
 	<h2>ValidationGroup Form</h2>
 	<div>
 		<h3>Validation Group 1</h3>
-		<form:form action="validate1.htm" method="post"
+		<form:form action="validate1" method="post"
 			modelAttribute="testForm1" role="form">
 			<div>
-				<form:label path="field1" for="field1">field1</form:label>
+				<form:label path="field1" for="field1">field1 <span style="color:red">*</span></form:label>
 				<form:input path="field1" id="field1" />
 				<form:errors path="field1" style="color:red"></form:errors>
 			</div>
@@ -32,7 +32,7 @@
 	</div>
 	<div>
 		<h3>Validation Group 2</h3>
-		<form:form action="validate2.htm" method="post"
+		<form:form action="validate2" method="post"
 			modelAttribute="testForm2" role="form">
 			<div>
 				<form:label path="field1" for="field1">field1</form:label>
@@ -40,7 +40,7 @@
 				<form:errors path="field1" style="color:red"></form:errors>
 			</div>
 			<div>
-				<form:label path="field2" for="field2">field2</form:label>
+				<form:label path="field2" for="field2">field2 <span style="color:red">*</span></form:label>
 				<form:input path="field2" id="field2" />
 				<form:errors path="field2" style="color:red"></form:errors>
 			</div>
@@ -48,6 +48,10 @@
 				<form:button type="submit">Submit</form:button>
 			</div>
 		</form:form>
+	</div>
+	
+	<div>
+	<p style="color:red">* : required fields</p>
 	</div>
 
 </body>

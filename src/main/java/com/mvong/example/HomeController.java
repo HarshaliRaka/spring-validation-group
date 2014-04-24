@@ -17,8 +17,9 @@ import com.mvong.example.Form.Group2;
 @Controller
 public class HomeController {
 
-	private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
-	
+	private static final Logger LOGGER = Logger.getLogger(HomeController.class
+			.getName());
+
 	@ModelAttribute("testForm1")
 	public Form getForm1() {
 		return new Form();
@@ -29,7 +30,7 @@ public class HomeController {
 		return new Form();
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHome(Model model) {
 		return "home";
 	}
@@ -42,7 +43,7 @@ public class HomeController {
 			LOGGER.log(Level.INFO, "form1 has errors");
 			return "home";
 		}
-		return "redirect:/home.htm";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/validate2", method = RequestMethod.POST)
@@ -53,6 +54,7 @@ public class HomeController {
 			LOGGER.log(Level.INFO, "form2 has errors");
 			return "home";
 		}
-		return "redirect:/home.htm";
+		return "redirect:/";
 	}
+	
 }
