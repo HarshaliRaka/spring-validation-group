@@ -1,5 +1,8 @@
 package com.mvong.example;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,15 +10,15 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mvong.example.Form.Group1;
 import com.mvong.example.Form.Group2;
 
 @Controller
-@SessionAttributes({ "testForm1", "testForm2" })
 public class HomeController {
 
+	private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
+	
 	@ModelAttribute("testForm1")
 	public Form getForm1() {
 		return new Form();
@@ -28,7 +31,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String getHome(Model model) {
-		System.out.println("inside controller");
 		return "home";
 	}
 
@@ -36,10 +38,9 @@ public class HomeController {
 	public String processGroup1(
 			@Validated({ Group1.class }) @ModelAttribute("testForm1") Form form,
 			BindingResult result, Model model) {
-		System.out.println(result);
 		if (result.hasErrors()) {
-			System.out.println("error in validation group1");
-			return null;
+			LOGGER.log(Level.INFO, "form1 has errors");
+			return "home";
 		}
 		return "redirect:/home.htm";
 	}
@@ -48,10 +49,9 @@ public class HomeController {
 	public String processGroup2(
 			@Validated({ Group2.class }) @ModelAttribute("testForm2") Form form,
 			BindingResult result, Model model) {
-		System.out.println(result);
 		if (result.hasErrors()) {
-			System.out.println("error in validation group2");
-			return null;
+			LOGGER.log(Level.INFO, "form2 has errors");
+			return "home";
 		}
 		return "redirect:/home.htm";
 	}
