@@ -19,22 +19,26 @@ public class HomeController {
 
 	private static final Logger LOGGER = Logger.getLogger(HomeController.class
 			.getName());
-
+	
+	// declare forms as request attribute of each request
 	@ModelAttribute("testForm1")
 	public Form getForm1() {
 		return new Form();
 	}
-
+	
+	// declare forms as request attribute of each request
 	@ModelAttribute("testForm2")
 	public Form getForm2() {
 		return new Form();
 	}
 
+	// populates the model with testForm1 and testForm2 before sending to the home view
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHome(Model model) {
 		return "home";
 	}
 
+	// validate form against validation group1
 	@RequestMapping(value = "/validate1", method = RequestMethod.POST)
 	public String processGroup1(
 			@Validated({ Group1.class }) @ModelAttribute("testForm1") Form form,
@@ -46,6 +50,7 @@ public class HomeController {
 		return "redirect:/";
 	}
 
+	// validate form against validation group2
 	@RequestMapping(value = "/validate2", method = RequestMethod.POST)
 	public String processGroup2(
 			@Validated({ Group2.class }) @ModelAttribute("testForm2") Form form,

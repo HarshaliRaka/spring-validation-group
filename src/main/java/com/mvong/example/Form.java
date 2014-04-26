@@ -5,16 +5,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Form {
 
 	public interface Group1 {
-
+		// empty interface
 	};
 
 	public interface Group2 {
-
+		// empty interface
 	};
 
+	// associate constraints to a validation group 
 	@NotEmpty(groups = { Group1.class })
 	private String field1;
 
+	// associate constraints to a validation group
 	@NotEmpty(groups = { Group2.class })
 	private String field2;
 
